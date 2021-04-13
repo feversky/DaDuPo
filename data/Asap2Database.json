@@ -1,0 +1,227 @@
+{
+  "id": "http://json-schema.org/dadupo",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "description": "Asap2 database of DaDuPo",
+  "definitions": {
+    "alignment":{
+      "type":"object",
+      "properties":{
+        "alignment_byte":{
+          "type": "integer",
+          "default": 1
+        },
+        "alignment_word":{
+          "type": "integer",
+          "default": 2
+        },
+        "alignment_long":{
+          "type": "integer",
+          "default": 4
+        },
+        "alignment_float32_ieee":{
+          "type": "integer",
+          "default": 4
+        },
+        "alignment_float64_ieee":{
+          "type": "integer",
+          "default": 8
+        },
+        "alignment_int64":{
+          "type": "integer",
+          "default": 8
+        }
+      }
+    },
+    "compu_method":{
+      "type":"object",
+      "required": [
+        "name",
+        "compu_method_type"
+      ],
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "unit": {
+          "type":"string"
+        },
+        "compu_method_type": {
+          "type":"string",
+          "enum": [
+            "LINEAR",
+            "DICT"
+          ]
+        },
+        "coeffs": {
+          "type":"object",
+          "required": [
+            "a","b"
+          ],
+          "properties": {
+            "a": {
+              "type": "number"
+            },
+            "b": {
+              "type":"number"
+            }
+          }
+        },
+        "dictionary": {
+          "type":"object"
+        }
+      }
+    },
+    "datatype": {
+      "type": "string",
+      "enum": [
+        "UBYTE",
+        "SBYTE",
+        "UWORD",
+        "SWORD",
+        "ULONG",
+        "SLONG",
+        "A_UINT64",
+        "A_INT64",
+        "FLOAT32_IEEE",
+        "FLOAT64_IEEE"
+      ]
+    }
+  },
+  "type": "object",
+  "required": [
+    "name",
+    "byte_order",
+    "compu_methods",
+    "db_type",
+    "db_desc",
+    "asap2_signals",
+    "asap2_parameters"
+  ],
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "db_type": {
+      "type": "string",
+      "enum": [
+        "ASAP2"
+      ]
+    },
+    "byte_order": {
+      "type": "string",
+      "enum": [
+        "MSB_FIRST",
+        "MSB_LAST"
+      ]
+    },
+    "db_desc": {
+      "type": "string"
+    },
+    "alignment": {"$ref": "#/definitions/alignment"},
+    "compu_methods": {
+      "type":"array",
+      "items": {
+        "$ref": "#/definitions/compu_method"
+      }
+    },
+    "asap2_signals":{
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required": [
+          "name",
+          "datatype",
+          "address"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {"$ref": "#/definitions/datatype"},
+          "alignment": {"$ref": "#/definitions/alignment"},
+          "compu_method": {
+            "type":"string"
+          },
+          "count": {
+            "type":"integer",
+            "default": 1
+          },
+          "address": {
+            "type":"string",
+            "pattern": "0x[a-f0-9A-f]+"
+          },
+          "unit": {
+            "type":"string"
+          },
+          "identifier": {
+            "type":"string"
+          },
+          "db_desc": {
+            "type":"string"
+          }
+        }
+      }
+    },
+    "asap2_parameters":{
+      "type":"array",
+      "items": {
+        "type":"object",
+        "required": [
+          "name",
+          "parameter_type",
+          "count",
+          "datatype",
+          "address"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "datatype": {"$ref": "#/definitions/datatype"},
+          "alignment": {"$ref": "#/definitions/alignment"},
+          "compu_method": {
+            "type":"string"
+          },
+          "parameter_type": {
+            "type": "string",
+            "enum": [
+              "ASCII",
+              "VALUE",
+              "ARRAY",
+              "CURVE",
+              "MAP"
+            ]
+          },
+          "address": {
+            "type":"string",
+            "pattern": "0x[a-f0-9A-f]+"
+          },
+          "unit": {
+            "type":"string"
+          },
+          "identifier": {
+            "type":"string"
+          },
+          "count": {
+            "type":"integer"
+          },
+          "ref-x": {
+            "type": "string"
+          },
+          "ref-y": {
+            "type": "string"
+          },
+          "db_desc": {
+            "type":"string"
+          }
+        }
+      }
+    }
+  }
+}

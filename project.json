@@ -1,0 +1,14 @@
+{
+  "name": "DEMO",
+  "devices": [
+    {
+      "name": "node1",
+      "transport": "XcpOnSxi",
+      "port": "COM17",
+      "bitrate": 115200,
+      "xonxoff": true,
+      "TIMEOUT": 5.0,
+      "database": ["node1.json"]
+    }
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "node1",
+  "db_type": "ASAP2",
+  "byte_order": "MSB_LAST",
+  "compu_methods": [
+    {
+      "name": "identical",
+      "compu_method_type": "LINEAR",
+      "coeffs": {
+        "a": 1,
+        "b": 0
+      },
+      "unit": "-"
+    },
+    {
+      "name": "table",
+      "compu_method_type": "DICT",
+      "dictionary": {
+        "1": "true",
+        "0": "false"
+      },
+      "unit": "-"
+    }
+  ],
+  "asap2_signals": [
+    {
+      "name": "sig",
+      "description": "sine wave",
+      "datatype": "FLOAT64_IEEE",
+      "compu_method": "identical",
+      "count": 1,
+      "address": "0x3ffbffc0"
+    }
+  ],
+  "asap2_parameters": [
+    {
+      "name": "amplifier",
+      "description": "amplifier of sine wave",
+      "datatype": "UBYTE",
+      "compu_method": "identical",
+      "parameter_type": "VALUE",
+      "address": "0x3ffbdbc5",
+      "count": 1
+    }
+  ]
+}
